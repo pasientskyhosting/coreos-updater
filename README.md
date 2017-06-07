@@ -14,9 +14,52 @@ Next, trigger an update
 $ sudo systemctl unmask update-engine.service
 $ sudo systemctl start update-engine.service
 $ update_engine_client -check_for_update
+$ update_engine_client -update
 ```
 
-# Note: Make sure to use overlay as storage driver for now
+After reboot, remove the overlay2 folder
+```
+rm -rf /var/lib/docker/overlay2
+```
+
+# Make sure overlay is the storage driver
+```
+rm /etc/systemd/system/docker.service.d/20-docker.conf
+
+
+# docker info
+Containers: 86
+ Running: 80
+ Paused: 0
+ Stopped: 6
+Images: 225
+Server Version: 1.12.3
+Storage Driver: overlay
+ Backing Filesystem: extfs
+Logging Driver: json-file
+Cgroup Driver: cgroupfs
+Plugins:
+ Volume: local
+ Network: null bridge host overlay
+Swarm: inactive
+Runtimes: runc
+Default Runtime: runc
+Security Options: seccomp selinux
+Kernel Version: 4.7.3-coreos-r2
+Operating System: Container Linux by CoreOS 1235.6.0 (Ladybug)
+OSType: linux
+Architecture: x86_64
+CPUs: 8
+Total Memory: 29.46 GiB
+Name: kube-node03
+ID: HWSW:4ZP2:SQZH:KFYQ:AY7Q:KBP6:CKMH:RRHG:GLA5:UE3V:KJ3C:KFTM
+Docker Root Dir: /var/lib/docker
+Debug Mode (client): false
+Debug Mode (server): false
+Registry: https://index.docker.io/v1/
+Insecure Registries:
+ 127.0.0.0/8
+```
 
 # Install ISO, OVA etc can be found at
 https://stable.release.core-os.net/amd64-usr/1235.6.0/
