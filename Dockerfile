@@ -13,10 +13,8 @@ ADD conf/nginx-site.conf /etc/nginx/sites-enabled/nginx-site.conf
 ADD conf/nginx.conf /nginx.conf
 
 ADD scripts/getVersion.sh /getVersion.sh
-RUN chmod +x /getVersion.sh
 
 WORKDIR /data
-
 RUN /bin/bash /getVersion.sh 1235.6.0
 
 EXPOSE 80
