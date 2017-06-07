@@ -1,15 +1,15 @@
 #!/bin/bash
 
-URL="http://10.50.22.22:9000/amd64-usr/"
+URL="http://${ADDR}/amd64-usr/"
 VERSION="$1"
 
 if [ ! -d amd64-usr/$VERSION ]; then
-        mkdir -p amd64-usr/$VERSION
+    mkdir -p amd64-usr/$VERSION
 fi
 
 if [ ! -f amd64-usr/$VERSION/update.gz ]; then
-        echo "Getting $VERSION/update.gz from https://update.release.core-os.net"
-        wget -qP amd64-usr/$VERSION https://update.release.core-os.net/amd64-usr/$VERSION/update.gz
+    echo "Getting $VERSION from https://update.release.core-os.net"
+    wget -qP amd64-usr/$VERSION https://update.release.core-os.net/amd64-usr/$VERSION/update.gz
 fi
 
 SIZE=$(stat -c %s amd64-usr/${VERSION}/update.gz)

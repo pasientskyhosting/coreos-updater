@@ -9,7 +9,6 @@ RUN apt-get update \
     && mkdir -p /data \
     && mkdir -p /etc/nginx/sites-enabled/
 
-
 ADD conf/nginx-site.conf /etc/nginx/sites-enabled/nginx-site.conf
 ADD conf/nginx.conf /nginx.conf
 
@@ -21,6 +20,4 @@ WORKDIR /data
 RUN /bin/bash /getVersion.sh 1235.6.0
 
 EXPOSE 80
-VOLUME /data
-
 CMD ["nginx", "-c","/nginx.conf"]

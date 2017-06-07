@@ -2,6 +2,10 @@ CoreOS Update server
 
 This server makes sure coreos only runs the version you want
 
+```
+docker run -d --restart=always --name=coreos-updater -p 9000:80 -e ADDR=10.50.22.22:9000 pasientskyhosting/coreos-updater:latest
+```
+
 First add the ip address to the CoreOS server to grab the update from
 ```
 # cat /etc/coreos/update.conf
@@ -11,16 +15,19 @@ GROUP=stable
 
 Next, trigger an update
 ```
-$ sudo systemctl unmask update-engine.service
-$ sudo systemctl start update-engine.service
-$ update_engine_client -check_for_update
-$ update_engine_client -update
+sudo systemctl unmask update-engine.service
+sudo systemctl start update-engine.service
+sudo update_engine_client -update
 ```
 
 After reboot, remove the overlay2 folder
 ```
-rm -rf /var/lib/docker/overlay2
+sudo systemctl stop kubelet
+sudo systemctl stop docker
+sudo rm -rf /var/lib/docker/overlay2
 ```
+
+Reboot again
 
 # Make sure overlay is the storage driver
 ```
@@ -63,3 +70,4 @@ Insecure Registries:
 
 # Install ISO, OVA etc can be found at
 https://stable.release.core-os.net/amd64-usr/1235.6.0/
+https://stable.release.core-os.net/amd64-usr/1235.6.0/coreos_production_vmware_ova.ova
