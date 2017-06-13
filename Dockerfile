@@ -17,6 +17,7 @@ ADD scripts/getVersion.sh /getVersion.sh
 WORKDIR /data
 RUN /bin/bash /getVersion.sh 1235.6.0
 RUN /bin/bash /getVersion.sh 1353.7.0
+RUN /bin/bash /getVersion.sh 1353.8.0
 
 EXPOSE 80
 CMD ["nginx", "-c","/nginx.conf"]
