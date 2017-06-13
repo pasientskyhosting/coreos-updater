@@ -9,7 +9,7 @@ docker run -d --restart=always --name=coreos-updater -p 9000:80 -e ADDR=10.50.22
 First add the ip address to the CoreOS server to grab the update from
 ```
 # cat /etc/coreos/update.conf
-SERVER=http://10.50.22.22:9000/1353.7.0/
+SERVER=http://10.100.22.22:9000/1353.7.0/
 GROUP=stable
 REBOOT_STRATEGY=off
 ```
