@@ -1,6 +1,6 @@
 #!/bin/bash
 
-URL="http://${ADDR}/amd64-usr/"
+URL="http://10.50.22.22/amd64-usr/"
 VERSION="$1"
 
 if [ ! -d amd64-usr/$VERSION ]; then
