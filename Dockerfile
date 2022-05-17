@@ -1,4 +1,4 @@
-FROM nginx:1.13.1
+FROM nginx:mainline
 
 RUN apt-get update \
     && apt-get install -y -q --no-install-recommends --no-install-suggests \
